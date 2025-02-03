@@ -1,0 +1,10 @@
+---
+- name: Install Docker Compose
+  hosts: all
+  become: yes
+  tasks:
+    - name: Download Docker Compose
+      ansible.builtin.get_url:
+        url: "https://github.com/docker/compose/releases/latest/download/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+        dest: "/usr/local/bin/docker-compose"
+        mode: '0755'
