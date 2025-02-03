@@ -1,0 +1,8 @@
+---
+- name: Set timezone on Ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure the correct timezone is set
+      community.general.timezone:
+        name: "Europe/Berlin"
