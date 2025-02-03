@@ -3,14 +3,14 @@
   hosts: all
   become: yes
   tasks:
-    - name: Create user "deploy"
+    - name: Create user "jan"
       ansible.builtin.user:
         name: deploy
         shell: /bin/bash
         groups: sudo
         append: yes
 
-    - name: Set SSH key for user "deploy"
+    - name: Set SSH key for user "jan"
       ansible.builtin.authorized_key:
         user: deploy
         state: present
