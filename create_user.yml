@@ -1,0 +1,17 @@
+---
+- name: Create a user and set SSH key
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create user "deploy"
+      ansible.builtin.user:
+        name: deploy
+        shell: /bin/bash
+        groups: sudo
+        append: yes
+
+    - name: Set SSH key for user "deploy"
+      ansible.builtin.authorized_key:
+        user: deploy
+        state: present
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClb+ULj3KJ/mesmSxkSyLZA8eDf2rg3sNaGjcwk8AFhDn9AkTeSyAMBPPFTSg9GX8dhvlmwEFLmixg8Pp//rxfxS1n69SpBkI++G8n9AD6U0OhXdUmwpAIHdLJO+ng4XbKJAxi82LSPtd0457OpSeNZ2l18AKfDXfLVnrSNH0R1L++fpCSkTlBTHmQS0JEol5xdN4K6IC/fA0QuMVTI+9bzU6aLyeoFqWGmfF7mUEscEgL6w5dQ1kJuOTZL/fvoYyOyuUVJog3s/x9Q8cATmDjinKrzU5aYKGWERsYBCaZ/u/2EKdOT6qHu88AAMd4J8uLsl1f3Z8EwDv+/lMKkOD5"
