@@ -1,0 +1,16 @@
+---
+- name: Enable automatic updates
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install unattended-upgrades
+      ansible.builtin.apt:
+        name: unattended-upgrades
+        state: present
+
+    - name: Enable automatic updates
+      ansible.builtin.copy:
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        content: |
+          APT::Periodic::Update-Package-Lists "1";
+          APT::Periodic::Unattended-Upgrade "1";
